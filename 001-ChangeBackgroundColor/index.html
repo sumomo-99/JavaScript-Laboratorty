@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Changing Background Color</title>
+</head>
+<body id="myBody"" style="background-color:white;">
+    <div class="container-fluid">
+        <h1>背景の色を自然に変化させる例</h1>
+        <p>Example of changing the background color naturally.</p>
+        <p>&copy;2020 <a href="https://twitter.com/sumomo_99">sumomo_99</a></p>
+        </div>
+    </div>
+</body>
+<script>
+    let rgb = [0, 0, 0]; //RGB value
+    let inc = [1, 1, 1]; //increase(1) or decrease(-1)
+    const interval = 100; //interval time
+
+    bgColor = () => {
+        let color = Math.floor(Math.random() * 3); //Which color to change?
+        let value = 1 + Math.floor(Math.random() * 3); //value of change
+
+        rgb[color] += value * inc[color];
+        
+        if (rgb[color] < 0 || rgb[color] > 255) {
+            inc[color] *= -1;
+        }
+
+        document.getElementById("myBody").style = 
+            `background-color: rgb(${rgb[0]},${rgb[1]},${rgb[2]});`;
+    }
+
+    setInterval(bgColor, interval);
+</script>
+</html>
