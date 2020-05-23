@@ -3,5 +3,10 @@ html {
 }
 
 body {
+    background-color:black;
     height: 100%;
+}
+
+.footer {
+    background-color: gray;
 }
