@@ -9,3 +9,7 @@ Low、Middle、Highの3種類で背景色の変化速度をかえることがで
 [http://meditation-js.410gone.click/](http://meditation-js.410gone.click/)で、アプリケーションを公開しています。
 ## 003-EraNameMaker
 ランダムで2文字の漢字を表示して、元号のような単語を作るアプリケーションです。
+  
+[http://eranamemaker.410gone.click/](http://eranamemaker.410gone.click/)で、アプリケーションを公開しています。
+  
+![Era Name Maker](https://github.com/sumomo-99/JavaScript-Laboratory/blob/images/003-EraNameMaker.png)
