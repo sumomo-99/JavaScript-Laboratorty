@@ -7,21 +7,44 @@ const col = 4;
 
 class Pop extends React.Component {
   
+  handleClick = (value) => {
+    this.props.onPopClicked(value);
+  }
+  
   render() {
+    const value = this.props.valObj === null ? 0 : this.props.valObj.value;
+
     return (
-      <div className="pop w3-cell w3-cell-middle w3-light-grey w3-circle">
-        {this.props.valObj === null ? "" : (
-          <div className=" w3-center w3-xlarge">
-          <div>{String.fromCodePoint(this.props.valObj.icon)}</div>
-          <div>{this.props.valObj.value}</div>
+      <button className="pop w3-button w3-cell w3-cell-middle w3-light-grey w3-circle w3-xlarge"
+        onClick={() => this.handleClick(value)}>
+        {this.props.valObj !== null && (
+          <div>
+            <div>{String.fromCodePoint(this.props.valObj.icon)}</div>
+            <div>{value}</div>
           </div>
         )}
-      </div>
+      </button>
     )
   }
 }
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      score: 0,
+      items: 3
+    };
+  }
+
+  handlePopClicked = (value) => {
+    console.log(value);
+    this.setState((state) => ({
+      score: (state.score + value),
+      items: (value === 0) ? (state.items - 1) : state.items
+    }));
+  }
+
   render() {
     let rows = [];
     let pop = Math.floor(Math.random() * row * col);
@@ -31,13 +54,24 @@ class Board extends React.Component {
       for (let x = 0; x < col; x++) {
         let id = col * y + x;
         let val = id === pop ? this.props.valObj : null;
-        cols.push(<Pop key={id} idx={id} valObj={val} />);
+        cols.push(<Pop key={id} idx={id} valObj={val}
+          onPopClicked={this.handlePopClicked} />);
       }
-      rows.push(<div key={y} className="row">{cols}</div>);
+      rows.push(<div key={y}>{cols}</div>);
     }
     return (
       <div className="board">
+        <div className="w3-cell-row w3-margin-bottom w3-dark-gray w3-padding">
+          <div className="w3-cell">
+          SCORE: {this.state.score}
+          </div>
+          <div className="w3-cell">
+          ITEMS: {this.state.items}
+          </div>
+        </div>
+        <div className="w3-center">
         {rows}
+        </div>
       </div>
     )
   }
@@ -47,19 +81,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 0,
-      items: 3,
       gameOver: false,
-      gameObj: {},
       valObj: {},
       isMenu: true
     };
   }
-  
+
   componentDidMount() {
     axios.get("http://localhost:8080/data")
     .then((res) => {
-      this.setState({gameObj: res.data});
+      this.gameObj = res.data;
     });
     
     this.timerID = setInterval(
@@ -72,8 +103,8 @@ export default class App extends React.Component {
   }
 
   randomVal() {
-    let idx = Math.floor(Math.random() * this.state.gameObj.data.length);
-    this.setState({valObj: this.state.gameObj.data[idx]});
+    let idx = Math.floor(Math.random() * this.gameObj.data.length);
+    this.setState({valObj: this.gameObj.data[idx]});
   }
   
   render() {
