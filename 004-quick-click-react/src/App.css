@@ -4,3 +4,7 @@
     font-family: fantasy;
     outline: none;
 }
+
+.menu-btn {
+    width: 100px;
+}

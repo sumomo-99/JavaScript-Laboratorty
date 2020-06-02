@@ -17,5 +17,5 @@ Low、Middle、Highの3種類で背景色の変化速度をかえることがで
 ![Era Name Maker](https://github.com/sumomo-99/JavaScript-Laboratory/blob/images/003-EraNameMaker.png)
 
 ## 004-quick-click-react
-* 作成中 *  
+**作成中**  
 ポップアップするアイコンをクリックするゲームです。
