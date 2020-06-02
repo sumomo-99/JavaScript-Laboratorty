@@ -167,7 +167,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/data")
+    axios.get("/data")
     .then((res) => {
       this.gameObj = res.data;
     });
