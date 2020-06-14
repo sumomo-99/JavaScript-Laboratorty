@@ -1,0 +1,13 @@
+{
+  "categories": ["サイエンス", "似非科学"],
+  "data": [
+  {"name": "NASA Public API",
+  "url": "https://example.com",
+"description": "NASAのAPIなり。",
+"category": "サイエンス"},
+  {"name": "エセ Public API",
+  "url": "https://example.com",
+"description": "エセ",
+"category": "似非科学"}
+
+]}
